@@ -28,13 +28,13 @@ public void Move(InputAction.CallbackContext context) {
 private void Update() {
     UpdateAcceleration();
     
-    _rb.velocity = new Vector2(_horizontalMovement * speed *_currentAcceleration, _rb.velocity.y);
-    if (IsGrounded() && _rb.velocity.y <= 0) canJump = true;
+    _rb.linearVelocity = new Vector2(_horizontalMovement * speed *_currentAcceleration, _rb.linearVelocity.y);
+    if (IsGrounded() && _rb.linearVelocity.y <= 0) canJump = true;
 }
 
 public void Jump(InputAction.CallbackContext context) {
     if (!context.performed || !canJump) return;
-    _rb.velocity = new Vector2(_rb.velocity.x, jumpingPower);
+    _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpingPower);
     canJump = false;
 }
 
