@@ -6,12 +6,12 @@ public class PlayerMovement : MonoBehaviour
     float speed = 3f;
     Rigidbody2D _rb;
     public Transform groundCheck; 
-    public LayerMask groundLayer; 
-    private bool canJump; 
+    public LayerMask groundLayer;  
     float jumpingPower = 5f;     
     float _currentAcceleration;
     float accelerationPower = 1f;   
     private bool buttonPressed = false;
+    private bool isJumping;
 
 
     
@@ -29,21 +29,35 @@ private void Update() {
     UpdateAcceleration();
     
     _rb.linearVelocity = new Vector2(_horizontalMovement * speed *_currentAcceleration, _rb.linearVelocity.y);
-    if (IsGrounded() && _rb.linearVelocity.y <= 0) canJump = true;
+
+    if (IsGrounded())
+    {
+    isJumping = false;
+    }
+
 }
 
-public void Jump(InputAction.CallbackContext context) {
-    if (!context.performed || !canJump) return;
-    _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpingPower);
-    canJump = false;
+public void Jump(InputAction.CallbackContext context)
+{
+    if (!context.performed){
+         return;
+    }
+
+    if (IsGrounded())
+    {
+        _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpingPower);
+    }
 }
+
+
+
 
 private bool IsGrounded()
-
 {
-  
-    return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.05f, groundLayer);
+    return hit.collider != null;
 }
+
 
 private void UpdateAcceleration() {
     if (!buttonPressed && _currentAcceleration > 0) {
