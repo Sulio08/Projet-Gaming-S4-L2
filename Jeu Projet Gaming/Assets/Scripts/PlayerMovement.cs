@@ -38,14 +38,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Update - velocity before: " + _rb.velocity);
+        Debug.Log("Update - velocity before: " + _rb.linearVelocity);
         UpdateAcceleration();
-        _rb.velocity = new Vector2(_horizontalMovement * speed * _currentAcceleration, _rb.velocity.y);
-        Debug.Log("Update - velocity after: " + _rb.velocity);
+        _rb.linearVelocity = new Vector2(_horizontalMovement * speed * _currentAcceleration, _rb.linearVelocity.y);
+        Debug.Log("Update - velocity after: " + _rb.linearVelocity);
 
         bool grounded = IsGrounded();
-        Debug.Log("Update - IsGrounded: " + grounded + " | isJumping: " + isJumping + " | velocity.y: " + _rb.velocity.y);
-        if (grounded && _rb.velocity.y <= 0)
+        Debug.Log("Update - IsGrounded: " + grounded + " | isJumping: " + isJumping + " | velocity.y: " + _rb.linearVelocity.y);
+        if (grounded && _rb.linearVelocity.y <= 0)
         {
             isJumping = false;
             Debug.Log("Update - Player landed, isJumping set to false");
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!isJumping && IsGrounded())
             {
-                _rb.velocity = new Vector2(_rb.velocity.x, jumpingPower);
+                _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpingPower);
                 isJumping = true;
                 Debug.Log("Jump executed - velocity.y set to: " + jumpingPower + " | isJumping: true");
             }
