@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: a042c10df5daed244b432a939b28c2ce
+guid: cdab56e932af89340be4080c8263970e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -298624492823214948
-    second: dead1_0
-  - first:
-      213: -6438166216649936081
-    second: dead1_1
+      213: 6230788792946851344
+    second: interact_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -129,45 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dead1_0
+      name: interact_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 30
+        width: 28
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c948a002b921bdbf0800000000000000
-      internalID: -298624492823214948
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dead1_1
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 24
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f23f8a3dfe907a6a0800000000000000
-      internalID: -6438166216649936081
+      spriteID: 01ef4122565387650800000000000000
+      internalID: 6230788792946851344
       vertices: []
       indices: 
       edges: []
@@ -176,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 903c9479a4318d846868da00634ed166
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -186,8 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dead1_0: -298624492823214948
-      dead1_1: -6438166216649936081
+      interact_0: 6230788792946851344
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
