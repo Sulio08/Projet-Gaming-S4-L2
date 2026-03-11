@@ -9,10 +9,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
     float jumpingPower = 5f;
-    float _currentAcceleration;
-    float accelerationPower = 1f;
+    float acceleration = 6f;
     private bool buttonPressed = false;
     private bool isJumping;
+    float _currentspeed;
 
     private void Awake()
     {
@@ -38,34 +38,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Update - velocity before: " + _rb.linearVelocity);
-        UpdateAcceleration();
+        Sprint();
         _rb.linearVelocity = new Vector2(_horizontalMovement * speed * _currentAcceleration, _rb.linearVelocity.y);
-        Debug.Log("Update - velocity after: " + _rb.linearVelocity);
+    
 
         bool grounded = IsGrounded();
-        Debug.Log("Update - IsGrounded: " + grounded + " | isJumping: " + isJumping + " | velocity.y: " + _rb.linearVelocity.y);
+        
         if (grounded && _rb.linearVelocity.y <= 0)
         {
             isJumping = false;
-            Debug.Log("Update - Player landed, isJumping set to false");
+    
         }
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        Debug.Log("Jump called - context.performed: " + context.performed);
+       
         if (context.performed)
         {
             if (!isJumping && IsGrounded())
             {
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpingPower);
                 isJumping = true;
-                Debug.Log("Jump executed - velocity.y set to: " + jumpingPower + " | isJumping: true");
-            }
-            else
-            {
-                Debug.Log("Jump refused - isJumping: " + isJumping + " | IsGrounded: " + IsGrounded());
             }
         }
     }
@@ -83,39 +77,17 @@ public class PlayerMovement : MonoBehaviour
         return grounded;
     }
 
-    private void UpdateAcceleration()
-    {
-        Debug.Log("UpdateAcceleration - currentAcceleration: " + _currentAcceleration + " | buttonPressed: " + buttonPressed);
-        if (!buttonPressed && _currentAcceleration > 0)
-        {
-            if (IsGrounded())
-            {
-                _currentAcceleration -= accelerationPower * Time.deltaTime;
-            }
-            else
-            {
-                _currentAcceleration -= accelerationPower * Time.deltaTime * 0.5f;
-            }
-            if (_currentAcceleration <= 0f)
-            {
-                _currentAcceleration = 0f;
-                _horizontalMovement = 0f;
-                Debug.Log("UpdateAcceleration - Acceleration reached 0, horizontalMovement reset");
-            }
-        }
-        else if (_currentAcceleration < 5)
-        {
-            _currentAcceleration += accelerationPower * Time.deltaTime;
-        }
-        Debug.Log("UpdateAcceleration - currentAcceleration after update: " + _currentAcceleration);
-    }
 
-    private void OnDrawGizmos()
-    {
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, 0.15f);
+
+
+    private void Sprint(){
+        if(Input.GetKey(Key.code.LeftShift))
+            {
+                speed = acceleration;
+            }
+        else{
+                _currentspeed = speed;
         }
     }
+    
 }
