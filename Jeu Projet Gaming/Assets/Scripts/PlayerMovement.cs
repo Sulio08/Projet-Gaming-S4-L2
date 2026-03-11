@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     float _horizontalMovement;
-    float Normalspeed = 3f;
-    float SprintSpeed = 6f;
-    float _currentspeed;
+    float normalSpeed = 3f;
+    float sprintSpeed = 6f;
+    float _currentSpeed;
     Rigidbody2D _rb;
     public Transform groundCheck;
     public LayerMask groundLayer;
@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _currentSpeed = normalSpeed;
     
     }
 
@@ -31,15 +32,15 @@ public class PlayerMovement : MonoBehaviour
           
             if (moveInput != 0)
             {
-                _horizontalMovement = Mathf.Sign(moveInput)
+                _horizontalMovement = Mathf.Sign(moveInput);
             }
         }
     }
 
     private void Update()
     {
-        Sprint();
-        _rb.linearVelocity = new Vector2(_horizontalMovement * speed * _currentAcceleration, _rb.linearVelocity.y);
+        
+        _rb.linearVelocity = new Vector2(_horizontalMovement * normalSpeed * _currentSpeed, _rb.linearVelocity.y);
     
 
         bool grounded = IsGrounded();
@@ -79,13 +80,13 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    private void Sprint(InputAction.CallbackContext context){
+    public void Sprint(InputAction.CallbackContext context){
         if(context.performed)
             {
-             _currentspeed = SprintSpeed;
+             _currentSpeed = sprintSpeed;
             }
         if (context.canceled){
-            _currentSpeed = _baseSpeed;
+            _currentSpeed = normalSpeed;
         }
 }
     }
