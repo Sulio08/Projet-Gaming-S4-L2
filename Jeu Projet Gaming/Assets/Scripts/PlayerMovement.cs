@@ -64,9 +64,9 @@ public class PlayerMovement : MonoBehaviour
         _rb.linearVelocity = new Vector2(_horizontalMovement * _currentSpeed, _rb.linearVelocity.y);
 
         // Gestion du flag de saut pour l'animation (optionnel)
-        if (IsGrounded() && _rb.linearVelocity.y <= 0.1f)
+        if (IsGrounded() && _rb.linearVelocity.y <= 0)
         {
-            _isJumping = false;
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -2f);
         }
     }
 
@@ -84,6 +84,27 @@ public class PlayerMovement : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+        }
+    }
+    private void FixedUpdate()
+    {
+        // Déplacement horizontal
+        _rb.velocity = new Vector2(_horizontalMovement * _currentSpeed, _rb.velocity.y);
+
+        // Vérifie si au sol
+        bool grounded = IsGrounded();
+
+        // Plaque le perso au sol pour suivre les bosses
+        if (grounded && _rb.velocity.y <= 0f)
+        {
+            // Petite force vers le bas
+            _rb.velocity = new Vector2(_rb.velocity.x, -2f);
+        }
+
+        // Réinitialise le flag de saut
+        if (grounded && _rb.velocity.y <= 0.1f)
+        {
+            _isJumping = false;
         }
     }
 }
