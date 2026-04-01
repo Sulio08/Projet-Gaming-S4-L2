@@ -129,17 +129,48 @@ TextureImporter:
       name: idle2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 29
-        height: 32
+        x: 1
+        y: 1
+        width: 25
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: 11.5, y: -14.5}
+        - {x: 10.5, y: -14.5}
+        - {x: 10.5, y: -13.5}
+        - {x: 11.5, y: -13.5}
+        - {x: 11.5, y: -12.5}
+        - {x: 10.5, y: -12.5}
+        - {x: 11.5, y: -8.5}
+        - {x: 11.5, y: -4.5}
+        - {x: 10.5, y: 0.5}
+        - {x: 11.5, y: 1.5}
+        - {x: 11.5, y: 3.5}
+        - {x: 12.5, y: 4.5}
+        - {x: 12.5, y: 9.5}
+        - {x: 10.5, y: 12.5}
+        - {x: 4.5, y: 15.5}
+        - {x: 3.5, y: 15.5}
+        - {x: -3.5, y: 14.5}
+        - {x: -6.5, y: 11.5}
+        - {x: -6.5, y: 6.5}
+        - {x: -5.5, y: 4.5}
+        - {x: -3.5, y: 1.5}
+        - {x: -7.5, y: -2.5}
+        - {x: -7.5, y: -3.5}
+        - {x: -10.470365, y: -3.4407282}
+        - {x: -12.5, y: -7.5}
+        - {x: -12.5, y: -10.5}
+        - {x: -8.5, y: -10.5}
+        - {x: -6.5, y: -11.5}
+        - {x: -4.5, y: -14.5}
+        - {x: -4.5, y: -15.5}
+        - {x: 11.5, y: -15.5}
+      tessellationDetail: 1
       bones: []
       spriteID: 957bdfd0aa37c15c0800000000000000
       internalID: -4243389574673483943
@@ -151,7 +182,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 06727a2de423070499b217e92d6d9b6b
     internalID: 0
     vertices: []
     indices: 
