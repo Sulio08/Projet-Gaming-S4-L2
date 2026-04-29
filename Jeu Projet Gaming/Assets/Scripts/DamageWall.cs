@@ -2,24 +2,15 @@ using UnityEngine;
 
 public class DamageWall : MonoBehaviour
 {
-    public int health = 10;
+    public int damage = 1;
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            TakeDamage(1);
-        }
-    }
-
-    void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if (health <= 0)
-        {
-            Debug.Log("Le joueur a 0 de vie");
-           
+            PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+            if (player != null)
+                player.TakeDamage(damage, transform.position);
         }
     }
 }
