@@ -34,12 +34,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Dash",
+                    "name": "Attack",
                     "type": "Button",
-                    "id": "8475e1a9-0c57-4c70-b1b0-7dca09abb20c",
+                    "id": "e366e491-ca21-4a53-a966-7ab0feae5ca8",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press,Press",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -145,12 +145,12 @@
                 },
                 {
                     "name": "",
-                    "id": "bcd45a2b-2c88-4225-ae6c-e4b781ff0339",
+                    "id": "4b9d0ee9-f33f-45bb-8c97-d48cd7677d61",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Dash",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
