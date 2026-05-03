@@ -3,10 +3,18 @@ using System.Collections;
 
 public class Chest : MonoBehaviour
 {
+    public enum ChestType { Cle, Vie }
+
     [Header("Coffre")]
-    public string keyId;
+    public ChestType type = ChestType.Cle;
     public KeyCode openKey = KeyCode.E;
     public Animator animator;
+
+    [Header("Si type = Clé")]
+    public string keyId;
+
+    [Header("Si type = Vie")]
+    public int healAmount = 1; // Nombre de coeurs récupérés
 
     private bool _playerNearby = false;
     private bool _isOpened = false;
@@ -14,30 +22,36 @@ public class Chest : MonoBehaviour
     private void Update()
     {
         if (_playerNearby && !_isOpened && Input.GetKeyDown(openKey))
-        {
             OpenChest();
-        }
     }
 
     private void OpenChest()
     {
         _isOpened = true;
 
-        // Déclenche l'animation une seule fois
         if (animator != null)
             animator.SetTrigger("Open");
 
-        // Donne la clé au joueur
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj == null) return;
+
+        if (type == ChestType.Cle)
         {
-            KeyInventory inventory = player.GetComponent<KeyInventory>();
+            KeyInventory inventory = playerObj.GetComponent<KeyInventory>();
             if (inventory != null)
                 inventory.AddKey(keyId);
-        }
 
-        // Affiche le message via le MessageManager global
-        MessageManager.Instance.AfficherMessage("Vous avez récupéré une clé !");
+            MessageManager.Instance.AfficherMessage("Vous avez récupéré une clé !");
+        }
+        else if (type == ChestType.Vie)
+        {
+            PlayerMovement player = playerObj.GetComponent<PlayerMovement>();
+            if (player != null)
+            {
+                player.currentHealth = Mathf.Min(player.currentHealth + healAmount, player.maxHealth);
+                MessageManager.Instance.AfficherMessage("Vous avez récupéré " + healAmount + " coeur(s) !");
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
